@@ -34,6 +34,7 @@ exit
 - VRF
 - DNS server
 - look into supporting pipeline input of IP,mac (maybe not worth the time because the default is csv)
+- Media type support currenly have ethernet (01) hard coded
 
 
 
