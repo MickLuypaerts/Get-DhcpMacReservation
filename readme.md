@@ -16,17 +16,14 @@ exit
 ip dhcp pool MAC-0
     host 192.168.1.10 255.255.255.0
     client-identifier 01005079666800
-    default-router 10.0.0.1
 exit
 ip dhcp pool MAC-1
     host 192.168.1.20 255.255.255.0
     client-identifier 01005079666801
-    default-router 10.0.0.1
 exit
 ip dhcp pool MAC-2
     host 192.168.1.30 255.255.255.0
     client-identifier 0100AA79FF6801
-    default-router 10.0.0.1
 exit
 ```
 

@@ -30,22 +30,18 @@
         ip dhcp excluded-address 192.168.1.30
         ip dhcp pool LAN-INTER
                 network 10.0.0.0 255.255.255.0
-                default-router 10.0.0.1
         exit
         ip dhcp pool MAC-0
                 host 192.168.1.10 255.255.255.0
                 client-identifier 01005079666800
-                default-router 10.0.0.1
         exit
         ip dhcp pool MAC-1
                 host 192.168.1.20 255.255.255.0
                 client-identifier 01005079666801
-                default-router 10.0.0.1
         exit
         ip dhcp pool MAC-2
                 host 192.168.1.30 255.255.255.0
                 client-identifier 0100AA79FF6801
-                default-router 10.0.0.1
         exit
         .EXAMPLE
         PS> Get-DhcpMacReservation -CsvPath reservation-list.csv >> output.txt
@@ -93,7 +89,7 @@ Process {
     $dhcp_conf += [String]::Format("ip dhcp pool {0}`n`tnetwork {1} {2}`n`tdefault-router {3}`nexit`n", $PoolName, $NetworkIp, $NetworkMask, $DefaultRouter);
 
     for ($i = 0; $i -lt $excluded_ip_address.Count; $i++) {
-        $dhcp_conf += [String]::Format("ip dhcp pool MAC-{0}`n`thost {1} {2}`n`tclient-identifier {3}`n`tdefault-router {4}`nexit`n", $i, $excluded_ip_address[$i], $NetworkMask, $excluded_mac_address[$i], $DefaultRouter);
+        $dhcp_conf += [String]::Format("ip dhcp pool MAC-{0}`n`thost {1} {2}`n`tclient-identifier {3}`nexit`n", $i, $excluded_ip_address[$i], $NetworkMask, $excluded_mac_address[$i]);
     }
 }
 End {
