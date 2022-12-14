@@ -15,6 +15,8 @@
         .PARAMETER NetworkMask
         The network mask used for all DHCP pools.
         Four-part dotted-decimal format used as input
+        .PARAMETER DnsServers
+        The DSN servers used for all DHCP pools.
         .PARAMETER PoolName
         The named used for the main DHCP pool.
         .PARAMETER CsvPath
@@ -50,6 +52,7 @@ Param(
     [String] $DefaultRouter = "192.168.1.1",
     [String] $NetworkIp = "192.168.1.0",
     [String] $NetworkMask = "255.255.255.0",
+    [String] $DnsServers = "8.8.8.8",
     [String] $PoolName = "POOL_LAN",
     [Parameter(Mandatory = $true)]
     [String] $CsvPath
@@ -86,7 +89,7 @@ Process {
     for ($i = 0; $i -lt $excluded_ip_address.Count; $i++) {
         $dhcp_conf += [String]::Format("ip dhcp excluded-address {0}`n", $excluded_ip_address[$i]);  
     }
-    $dhcp_conf += [String]::Format("ip dhcp pool {0}`n`tnetwork {1} {2}`n`tdefault-router {3}`nexit`n", $PoolName, $NetworkIp, $NetworkMask, $DefaultRouter);
+    $dhcp_conf += [String]::Format("ip dhcp pool {0}`n`tnetwork {1} {2}`n`tdefault-router {3}`n`tdns-server {4}`nexit`n", $PoolName, $NetworkIp, $NetworkMask, $DefaultRouter, $DnsServers);
 
     for ($i = 0; $i -lt $excluded_ip_address.Count; $i++) {
         $dhcp_conf += [String]::Format("ip dhcp pool MAC-{0}`n`thost {1} {2}`n`tclient-identifier {3}`nexit`n", $i, $excluded_ip_address[$i], $NetworkMask, $excluded_mac_address[$i]);

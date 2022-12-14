@@ -12,6 +12,7 @@ ip dhcp excluded-address 192.168.1.30
 ip dhcp pool LAN-INTER
     network 10.0.0.0 255.255.255.0
     default-router 10.0.0.1
+    dns-server 8.8.8.8
 exit
 ip dhcp pool MAC-0
     host 192.168.1.10 255.255.255.0
@@ -29,9 +30,5 @@ exit
 
 ## TODO
 - VRF
-- DNS server
 - look into supporting pipeline input of IP,mac (maybe not worth the time because the default is csv)
 - Media type support currenly have ethernet (01) hard coded
-
-
-
